@@ -134,17 +134,17 @@ h1{
 /* ---- trajectory: distance markers ---- */
 .trajectory{list-style:none;margin:0;padding:0}
 .trajectory li{
-  display:grid;grid-template-columns:5.5rem 1fr;gap:0 1.5rem;align-items:baseline;
+  display:grid;grid-template-columns:7rem 1fr;gap:0 1.5rem;align-items:baseline;
   padding:0 0 1.35rem;position:relative;
 }
 .trajectory li:last-child{padding-bottom:0}
 .trajectory li::after{
-  content:'';position:absolute;left:4.25rem;top:.85em;bottom:-.35em;width:1px;background:var(--rule);
+  content:'';position:absolute;left:5.75rem;top:.85em;bottom:-.35em;width:1px;background:var(--rule);
 }
 .trajectory li:last-child::after{display:none}
 .trajectory .mark{
   font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;color:var(--hydro);
-  text-align:right;position:relative;font-weight:500;line-height:1.62;
+  text-align:right;position:relative;font-weight:500;line-height:1.62;white-space:nowrap;
 }
 .trajectory .mark::after{
   content:'';position:absolute;right:-1.31rem;top:50%;transform:translateY(-50%);
