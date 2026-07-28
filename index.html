@@ -24,8 +24,8 @@
   --body:'Source Serif 4',Georgia,serif;
   --mono:'IBM Plex Mono',ui-monospace,monospace;
 
-  --measure:68ch;
-  --gutter:clamp(1.25rem,5vw,4rem);
+  --measure:66ch;
+  --gutter:clamp(1.25rem,5vw,4.5rem);
 }
 
 *{box-sizing:border-box}
@@ -35,7 +35,7 @@ body{
   background:var(--paper);
   color:var(--ink);
   font-family:var(--body);
-  font-size:clamp(1rem,.96rem + .18vw,1.0625rem);
+  font-size:clamp(1rem,.95rem + .32vw,1.1875rem);
   line-height:1.62;
   font-variant-numeric:oldstyle-nums;
 }
@@ -55,7 +55,7 @@ a:focus-visible{outline:2px solid var(--hydro);outline-offset:3px;border-radius:
 .graticule.right{right:0}
 @media (max-width:720px){.graticule{display:none}}
 
-.wrap{position:relative;z-index:1;max-width:1040px;margin:0 auto;padding:0 var(--gutter)}
+.wrap{position:relative;z-index:1;max-width:1220px;margin:0 auto;padding:0 var(--gutter)}
 
 /* ---- header ---- */
 header{padding:clamp(3rem,9vw,6rem) 0 0}
@@ -80,6 +80,12 @@ h1{
 .summary{max-width:var(--measure);color:var(--ink-soft);margin:0 0 2.5rem}
 
 .contact{display:flex;flex-wrap:wrap;gap:.5rem 1.75rem;font-family:var(--mono);font-size:.82rem;margin:0 0 3.5rem}
+@media (min-width:960px){
+  .intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 clamp(3rem,5vw,5.5rem);align-items:start}
+  .intro .lede{margin:0;max-width:20ch;font-size:clamp(1.5rem,1.1rem + 1.1vw,2.15rem)}
+  .intro .summary{margin:0;padding-top:.5rem}
+  .contact{margin-top:2.75rem}
+}
 
 /* ---- signature: elevation profile ---- */
 .profile{margin:0 0 clamp(3rem,7vw,5rem)}
@@ -165,7 +171,7 @@ section{padding:clamp(2.25rem,5vw,3.5rem) 0;border-top:1px solid var(--rule)}
   vertical-align:.32em;margin-right:.7rem}
 
 @media (min-width:900px){
-  .cols{display:grid;grid-template-columns:11rem 1fr;gap:0 3rem;align-items:start}
+  .cols{display:grid;grid-template-columns:13rem 1fr;gap:0 clamp(3rem,4vw,5rem);align-items:start}
   .cols .sec-head{grid-column:1;position:sticky;top:2.5rem;margin:0}
   .cols .sec-body{grid-column:2}
 }
@@ -223,6 +229,8 @@ footer{padding:2.5rem 0 4rem;border-top:1px solid var(--rule);
   .contact{margin-bottom:1rem}
   section{padding:.85rem 0;break-inside:avoid}
   .cols{grid-template-columns:8rem 1fr;gap:0 1.5rem}
+  .intro{display:block}
+  .intro .lede{max-width:none}
   .cols .sec-head{position:static}
   .role{break-inside:avoid}
   a{color:inherit;border:0}
@@ -248,9 +256,11 @@ footer{padding:2.5rem 0 4rem;border-top:1px solid var(--rule);
 
   <h1>Lucas<br>Abeln</h1>
 
+  <div class="intro">
   <p class="lede">I build distributed systems, and I explain them to <em>the people who pay for them.</em></p>
 
   <p class="summary">Four years out of school: founding engineer on a platform now in global alpha for a Fortune 500 freight forwarder, service patterns I established adopted across the enterprise, and a seat on the cloud architecture committee. I specialize in Kafka and GraphQL microservices at global scale, and I spend as much time presenting that architecture to executives as I do designing it, turning complex systems into decisions people can actually make.</p>
+  </div>
 
   <p class="contact">
     <a href="mailto:lucasabeln@gmail.com">lucasabeln@gmail.com</a>
