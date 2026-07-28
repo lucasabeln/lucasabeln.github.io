@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lucas Abeln | Distributed Systems Engineer</title>
+<meta name="description" content="Distributed systems engineer in Seattle. Founding engineer on a global freight platform. Kafka, GraphQL, event-driven architecture.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F2F4F0;
+  --paper-deep:#E8ECE6;
+  --ink:#15242C;
+  --ink-soft:#54666E;
+  --hydro:#1F6E8C;
+  --contour:#B08A62;
+  --veg:#7D9B70;
+  --veg-deep:#4F6B45;
+  --rule:rgba(21,36,44,.14);
+
+  --display:'Archivo',system-ui,sans-serif;
+  --body:'Source Serif 4',Georgia,serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+
+  --measure:68ch;
+  --gutter:clamp(1.25rem,5vw,4rem);
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:clamp(1rem,.96rem + .18vw,1.0625rem);
+  line-height:1.62;
+  font-variant-numeric:oldstyle-nums;
+}
+a{color:var(--hydro);text-decoration:none;border-bottom:1px solid rgba(31,110,140,.32);transition:border-color .18s,color .18s}
+a:hover{border-bottom-color:var(--hydro)}
+a:focus-visible{outline:2px solid var(--hydro);outline-offset:3px;border-radius:2px}
+
+/* ---- graticule: map-margin tick marks ---- */
+.graticule{position:fixed;pointer-events:none;z-index:0;opacity:.5}
+.graticule.top,.graticule.bottom{left:0;right:0;height:9px;
+  background-image:repeating-linear-gradient(to right,var(--contour) 0 1px,transparent 1px 44px)}
+.graticule.top{top:0}
+.graticule.bottom{bottom:0}
+.graticule.left,.graticule.right{top:0;bottom:0;width:9px;
+  background-image:repeating-linear-gradient(to bottom,var(--contour) 0 1px,transparent 1px 44px)}
+.graticule.left{left:0}
+.graticule.right{right:0}
+@media (max-width:720px){.graticule{display:none}}
+
+.wrap{position:relative;z-index:1;max-width:1040px;margin:0 auto;padding:0 var(--gutter)}
+
+/* ---- header ---- */
+header{padding:clamp(3rem,9vw,6rem) 0 0}
+.coords{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-soft);display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;margin-bottom:1.75rem;
+}
+.coords span{white-space:nowrap}
+h1{
+  font-family:var(--display);
+  font-variation-settings:'wdth' 118,'wght' 620;
+  font-size:clamp(2.6rem,1.6rem + 4.6vw,5.2rem);
+  line-height:.92;letter-spacing:-.022em;text-transform:uppercase;
+  margin:0 0 1.4rem;
+}
+.lede{
+  font-size:clamp(1.15rem,1.02rem + .55vw,1.5rem);
+  line-height:1.4;max-width:26ch;margin:0 0 1.5rem;font-weight:600;
+  text-wrap:balance;
+}
+.lede em{font-style:normal;color:var(--hydro)}
+.summary{max-width:var(--measure);color:var(--ink-soft);margin:0 0 2.5rem}
+
+.contact{display:flex;flex-wrap:wrap;gap:.5rem 1.75rem;font-family:var(--mono);font-size:.82rem;margin:0 0 3.5rem}
+
+/* ---- signature: elevation profile ---- */
+.profile{margin:0 0 clamp(3rem,7vw,5rem)}
+.profile figcaption{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-soft);display:flex;flex-wrap:wrap;justify-content:space-between;
+  border-top:1px solid var(--rule);padding-top:.6rem;margin-top:.25rem;gap:.35rem 1.5rem;
+}
+.profile svg{display:block;width:100%;height:auto;overflow:visible}
+.ridge{fill:none;stroke:var(--ink);stroke-width:1.75;stroke-linejoin:round;stroke-linecap:round;
+  vector-effect:non-scaling-stroke}
+.ridge-fill{fill:var(--paper-deep)}
+.hair{stroke:var(--contour);stroke-width:1;opacity:.42;vector-effect:non-scaling-stroke}
+.wpt .halo{fill:none;stroke:var(--hydro);stroke-width:1;opacity:.3;vector-effect:non-scaling-stroke}
+.wpt .disc{fill:var(--paper);stroke:var(--hydro);stroke-width:2.5;vector-effect:non-scaling-stroke}
+.wpt .core{fill:var(--hydro)}
+.wpt .drop{stroke:var(--hydro);stroke-width:1;opacity:.25;stroke-dasharray:2 4;vector-effect:non-scaling-stroke}
+.wpt text{font-family:var(--display);font-variation-settings:'wdth' 100,'wght' 650;
+  font-size:13px;fill:var(--ink);letter-spacing:-.005em}
+.wpt .sub{font-family:var(--mono);font-size:10px;fill:var(--ink-soft);letter-spacing:.05em;
+  font-variation-settings:normal;font-weight:400}
+.wpt .yr{font-family:var(--mono);fill:var(--hydro);font-size:10px;letter-spacing:.09em;
+  font-variation-settings:normal}
+
+.span line{stroke:var(--veg-deep);stroke-width:1.25;vector-effect:non-scaling-stroke}
+.span text{font-family:var(--mono);font-size:10px;fill:var(--veg-deep);letter-spacing:.07em}
+
+@media (prefers-reduced-motion:no-preference){
+  .ridge{stroke-dasharray:2400;stroke-dashoffset:2400;animation:draw 1.9s cubic-bezier(.4,0,.2,1) .15s forwards}
+  .ridge-fill{opacity:0;animation:fade 1.1s ease 1.1s forwards}
+  .wpt,.measure,.span{opacity:0;animation:fade .5s ease forwards}
+  .s1{animation-delay:.55s}
+  .s2{animation-delay:1.05s}
+  .w1{animation-delay:.85s}
+  .w2{animation-delay:1.4s}
+  .w3{animation-delay:1.7s}
+  .w4{animation-delay:2s}
+  .measure{animation-delay:2.15s}
+}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fade{to{opacity:1}}
+
+.measure line{stroke:var(--hydro);stroke-width:1;vector-effect:non-scaling-stroke;opacity:.75}
+.measure text{font-family:var(--mono);font-size:10px;fill:var(--hydro);letter-spacing:.06em}
+
+/* ---- trajectory: distance markers ---- */
+.trajectory{list-style:none;margin:0;padding:0}
+.trajectory li{
+  display:grid;grid-template-columns:5.5rem 1fr;gap:0 1.5rem;align-items:baseline;
+  padding:0 0 1.35rem;position:relative;
+}
+.trajectory li:last-child{padding-bottom:0}
+.trajectory li::after{
+  content:'';position:absolute;left:4.25rem;top:.85em;bottom:-.35em;width:1px;background:var(--rule);
+}
+.trajectory li:last-child::after{display:none}
+.trajectory .mark{
+  font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;color:var(--hydro);
+  text-align:right;position:relative;font-weight:500;line-height:1.62;
+}
+.trajectory .mark::after{
+  content:'';position:absolute;right:-1.31rem;top:50%;transform:translateY(-50%);
+  width:9px;height:1px;background:var(--hydro);
+}
+.trajectory .what{margin:0}
+.trajectory .what strong{font-weight:600;font-family:var(--display);
+  font-variation-settings:'wdth' 100,'wght' 620;font-size:.95rem;display:block;margin-bottom:.15rem}
+.trajectory .what span{color:var(--ink-soft)}
+@media (max-width:520px){
+  .trajectory li{grid-template-columns:1fr;gap:.25rem}
+  .trajectory li::after{display:none}
+  .trajectory .mark{text-align:left}
+  .trajectory .mark::after{display:none}
+}
+
+/* ---- sections ---- */
+section{padding:clamp(2.25rem,5vw,3.5rem) 0;border-top:1px solid var(--rule)}
+.sec-head{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink-soft);margin:0 0 1.75rem;font-weight:500;
+}
+.sec-head::before{content:'';display:inline-block;width:1.5rem;height:1px;background:var(--contour);
+  vertical-align:.32em;margin-right:.7rem}
+
+@media (min-width:900px){
+  .cols{display:grid;grid-template-columns:11rem 1fr;gap:0 3rem;align-items:start}
+  .cols .sec-head{grid-column:1;position:sticky;top:2.5rem;margin:0}
+  .cols .sec-body{grid-column:2}
+}
+.sec-body{max-width:var(--measure)}
+
+/* ---- skills as a map legend ---- */
+.legend{list-style:none;margin:0;padding:0;display:grid;gap:1.4rem}
+.legend dt{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink-soft);margin-bottom:.3rem;display:flex;align-items:center;gap:.6rem;
+}
+.legend dt::before{content:'';width:22px;height:0;border-top:2px solid var(--key,var(--hydro));flex:none}
+.legend dd{margin:0;line-height:1.5}
+.k1{--key:var(--hydro)}
+.k2{--key:var(--veg)}
+.k3{--key:var(--contour)}
+.k4{--key:var(--ink-soft)}
+
+/* ---- experience ---- */
+.role{margin:0 0 2.5rem}
+.role:last-child{margin-bottom:0}
+.role-title{font-family:var(--display);font-variation-settings:'wdth' 108,'wght' 600;
+  font-size:1.35rem;line-height:1.2;margin:0 0 .2rem;letter-spacing:-.01em}
+.role-meta{font-family:var(--mono);font-size:.76rem;color:var(--ink-soft);margin:0 0 1.5rem;
+  letter-spacing:.04em}
+.entries{list-style:none;margin:0;padding:0}
+.entries > li{position:relative;padding:0 0 1.5rem 1.75rem;border-left:1px solid var(--rule)}
+.entries > li:last-child{padding-bottom:0;border-left-color:transparent}
+.entries > li::before{content:'';position:absolute;left:-4.5px;top:.55em;width:8px;height:8px;
+  border-radius:50%;background:var(--paper);border:2px solid var(--hydro)}
+.entries h4{font-family:var(--display);font-variation-settings:'wdth' 100,'wght' 640;
+  font-size:.95rem;margin:0 0 .35rem;letter-spacing:.005em}
+.entries p{margin:0;color:var(--ink-soft)}
+
+/* ---- education ---- */
+.edu-item{margin:0 0 1.75rem}
+.edu-item:last-child{margin-bottom:0}
+.edu-item h4{font-family:var(--display);font-variation-settings:'wdth' 100,'wght' 620;
+  font-size:1rem;margin:0 0 .3rem}
+.edu-item p{margin:0;color:var(--ink-soft)}
+
+footer{padding:2.5rem 0 4rem;border-top:1px solid var(--rule);
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-soft);display:flex;flex-wrap:wrap;gap:.6rem 2rem;justify-content:space-between}
+
+/* ---- print ---- */
+@media print{
+  :root{--paper:#fff;--paper-deep:#f2f2f2}
+  .graticule,.profile{display:none}
+  body{font-size:10.5pt;line-height:1.42}
+  .wrap{max-width:none;padding:0}
+  header{padding:0}
+  h1{font-size:26pt}
+  .lede{font-size:12pt;max-width:none}
+  .contact{margin-bottom:1rem}
+  section{padding:.85rem 0;break-inside:avoid}
+  .cols{grid-template-columns:8rem 1fr;gap:0 1.5rem}
+  .cols .sec-head{position:static}
+  .role{break-inside:avoid}
+  a{color:inherit;border:0}
+  footer{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="graticule top"></div>
+<div class="graticule bottom"></div>
+<div class="graticule left"></div>
+<div class="graticule right"></div>
+
+<div class="wrap">
+
+<header>
+  <div class="coords">
+    <span>47.6062° N &nbsp;122.3321° W</span>
+    <span>Seattle, Washington</span>
+    <span>Available for conversation</span>
+  </div>
+
+  <h1>Lucas<br>Abeln</h1>
+
+  <p class="lede">I build distributed systems, and I explain them to <em>the people who pay for them.</em></p>
+
+  <p class="summary">Four years out of school: founding engineer on a platform now in global alpha for a Fortune 500 freight forwarder, service patterns I established adopted across the enterprise, and a seat on the cloud architecture committee. I specialize in Kafka and GraphQL microservices at global scale, and I spend as much time presenting that architecture to executives as I do designing it, turning complex systems into decisions people can actually make.</p>
+
+  <p class="contact">
+    <a href="mailto:lucasabeln@gmail.com">lucasabeln@gmail.com</a>
+    <a href="tel:+16176107097">(617) 610-7097</a>
+    <a href="https://linkedin.com/in/lucas-abeln/">linkedin.com/in/lucas-abeln</a>
+  </p>
+
+  <figure class="profile">
+    <svg viewBox="0 -28 1000 268" role="img" aria-label="Route profile from 2014 to 2026. Four years of competitive high school rowing, then Gonzaga University in 2018 with four years of Division I rowing as team leader, hired at Expeditors in February of senior year, founding engineer on the next-generation shipment platform twenty-four months later, and alpha launch twenty months after that.">
+      <line class="hair" x1="0" y1="196" x2="1000" y2="196"/>
+      <path class="ridge-fill" d="M0,188 L48,184 L96,188 L144,180 L192,184 L240,177 L288,182 L336,172 L384,168 L432,172 L480,161 L528,165 L576,154 L624,150 L672,142 L720,130 L768,136 L816,112 L840,104 L888,90 L920,72 L944,58 L968,40 L1000,30 L1000,196 L0,196 Z"/>
+      <path class="ridge" d="M0,188 L48,184 L96,188 L144,180 L192,184 L240,177 L288,182 L336,172 L384,168 L432,172 L480,161 L528,165 L576,154 L624,150 L672,142 L720,130 L768,136 L816,112 L840,104 L888,90 L920,72 L944,58 L968,40 L1000,30"/>
+
+      <g class="span s1" aria-hidden="true">
+        <line x1="8" y1="208" x2="8" y2="216"/>
+        <line x1="8" y1="212" x2="328" y2="212"/>
+        <line x1="328" y1="208" x2="328" y2="216"/>
+        <text x="168" y="205" text-anchor="middle">COMPETITIVE HIGH SCHOOL ROWING</text>
+        <text x="8" y="232" text-anchor="start" class="yr" style="fill:var(--veg-deep)">2014</text>
+      </g>
+
+      <g class="span s2" aria-hidden="true">
+        <line x1="344" y1="208" x2="344" y2="216"/>
+        <line x1="344" y1="212" x2="664" y2="212"/>
+        <line x1="664" y1="208" x2="664" y2="216"/>
+        <text x="504" y="205" text-anchor="middle">DIVISION I ROWING &#183; TEAM LEADER</text>
+      </g>
+
+      <g class="measure" aria-hidden="true">
+        <line x1="680" y1="208" x2="680" y2="216"/>
+        <line x1="680" y1="212" x2="832" y2="212"/>
+        <line x1="832" y1="208" x2="832" y2="216"/>
+        <text x="756" y="205" text-anchor="middle">24 MONTHS</text>
+
+        <line x1="848" y1="208" x2="848" y2="216"/>
+        <line x1="848" y1="212" x2="960" y2="212"/>
+        <line x1="960" y1="208" x2="960" y2="216"/>
+        <text x="904" y="205" text-anchor="middle">20 MONTHS</text>
+      </g>
+
+      <g class="wpt w1">
+        <line class="drop" x1="336" y1="172" x2="336" y2="196"/>
+        <circle class="halo" cx="336" cy="172" r="10.5"/>
+        <circle class="disc" cx="336" cy="172" r="6.5"/>
+        <circle class="core" cx="336" cy="172" r="2.5"/>
+        <text x="336" y="128" text-anchor="middle">Gonzaga University</text>
+        <text x="336" y="144" text-anchor="middle" class="sub">COMPUTER SCIENCE &#183; RECRUITED TO ROW</text>
+        <text x="336" y="232" text-anchor="middle" class="yr">2018</text>
+      </g>
+      <g class="wpt w2">
+        <line class="drop" x1="672" y1="142" x2="672" y2="196"/>
+        <circle class="halo" cx="672" cy="142" r="10.5"/>
+        <circle class="disc" cx="672" cy="142" r="6.5"/>
+        <circle class="core" cx="672" cy="142" r="2.5"/>
+        <text x="672" y="98" text-anchor="middle">Hired at Expeditors</text>
+        <text x="672" y="114" text-anchor="middle" class="sub">FEBRUARY OF SENIOR YEAR</text>
+        <text x="672" y="232" text-anchor="middle" class="yr">2022</text>
+      </g>
+      <g class="wpt w3">
+        <line class="drop" x1="840" y1="104" x2="840" y2="196"/>
+        <circle class="halo" cx="840" cy="104" r="10.5"/>
+        <circle class="disc" cx="840" cy="104" r="6.5"/>
+        <circle class="core" cx="840" cy="104" r="2.5"/>
+        <text x="840" y="42" text-anchor="middle">Founding engineer</text>
+        <text x="840" y="58" text-anchor="middle" class="sub">NEXT-GEN SHIPMENT PLATFORM</text>
+        <text x="840" y="232" text-anchor="middle" class="yr">2024</text>
+      </g>
+      <g class="wpt w4">
+        <line class="drop" x1="968" y1="40" x2="968" y2="196"/>
+        <circle class="halo" cx="968" cy="40" r="10.5"/>
+        <circle class="disc" cx="968" cy="40" r="6.5"/>
+        <circle class="core" cx="968" cy="40" r="2.5"/>
+        <text x="968" y="-6" text-anchor="end">Alpha goes live</text>
+        <text x="968" y="10" text-anchor="end" class="sub">FORTUNE 500 FREIGHT</text>
+        <text x="968" y="232" text-anchor="end" class="yr">2026</text>
+      </g>
+    </svg>
+    <figcaption><span>Route profile</span><span>Eight years of competitive leadership in sport &#183; four years to global launch</span></figcaption>
+  </figure>
+</header>
+
+<section class="cols">
+  <h2 class="sec-head">Trajectory</h2>
+  <div class="sec-body">
+    <p style="margin:0 0 1.75rem;color:var(--ink-soft)">Measured from my first day out of school.</p>
+    <ul class="trajectory">
+      <li>
+        <span class="mark">Month 0</span>
+        <p class="what"><strong>Joined Expeditors International</strong><span>Hired in February of my senior year, three months before graduating.</span></p>
+      </li>
+      <li>
+        <span class="mark">Years 1 to 2</span>
+        <p class="what"><strong>Data governance and cloud migration</strong><span>Migrated legacy applications, some of them between 10 and 20 years old, off VM infrastructure and onto Azure. Architected the microservice approach and built the CI/CD pipelines that cut deployment to production from weeks to hours.</span></p>
+      </li>
+      <li>
+        <span class="mark">Month 24</span>
+        <p class="what"><strong>Founding engineer, next-generation shipment platform</strong><span>One of four engineers selected to design the tenant-microservice architecture replacing shipment transaction processing for a Fortune 500 freight forwarder. Led the core shipment data model, and shipped the company's first production microservices using event-driven choreography. The service design and API contract patterns we set are now standard across the enterprise.</span></p>
+      </li>
+      <li>
+        <span class="mark">Month 44</span>
+        <p class="what"><strong>Alpha goes live</strong><span>February 2026. Running across the global network, rollout ongoing.</span></p>
+      </li>
+      <li>
+        <span class="mark">Today</span>
+        <p class="what"><strong>Presenting to the global network</strong><span>Regularly present architecture and product progress to executive and operational stakeholders, field technical questions from non-technical executives, and mentor engineers on distributed system patterns.</span></p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="cols">
+  <h2 class="sec-head">Legend</h2>
+  <div class="sec-body">
+    <dl class="legend">
+      <div class="k1">
+        <dt>Working with people</dt>
+        <dd>Executive presentations, stakeholder engagement, technical communication, mentorship, public speaking</dd>
+      </div>
+      <div class="k2">
+        <dt>Frameworks &amp; tools</dt>
+        <dd>Kafka, Apollo GraphQL, Java Spring Boot, Temporal, Docker, Kubernetes, Angular, Git, agentic workflows</dd>
+      </div>
+      <div class="k3">
+        <dt>Cloud &amp; infrastructure</dt>
+        <dd>Azure, Terraform, CI/CD</dd>
+      </div>
+      <div class="k4">
+        <dt>Architecture &amp; practice</dt>
+        <dd>Microservices, event-driven architecture, service choreography, AI-augmented development</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<section class="cols">
+  <h2 class="sec-head">Experience</h2>
+  <div class="sec-body">
+    <article class="role">
+      <h3 class="role-title">Software Engineer III</h3>
+      <p class="role-meta">Expeditors International &nbsp;·&nbsp; Seattle, WA &nbsp;·&nbsp; June 2022 to Present</p>
+
+      <ul class="entries">
+        <li>
+          <h4>Next-generation shipment platform &nbsp;<span style="font-family:var(--mono);font-weight:400;font-size:.8em;color:var(--ink-soft)">2024 to present</span></h4>
+          <p>One of four founding engineers designing a tenant-microservice architecture to modernize shipment transaction processing for a Fortune 500 global freight forwarder. Led design of the core shipment data model and event-driven service choreography using Java Spring Boot, Kafka, GraphQL and Azure. Launched to global alpha in February 2026, with rollout ongoing.</p>
+        </li>
+        <li>
+          <h4>Stakeholder presentations</h4>
+          <p>Present architectural decisions and product progress to executive and operational stakeholders across the global network. Field technical questions from non-technical executives and translate complex systems into actionable business context, folding what comes back into product direction.</p>
+        </li>
+        <li>
+          <h4>Microservice architecture</h4>
+          <p>One of four engineers on the first team to ship production microservices using event-driven choreography. Established patterns for service design, API contracts, and cloud-native deployment that became departmental standards and have since been adopted enterprise-wide.</p>
+        </li>
+        <li>
+          <h4>Legacy modernization</h4>
+          <p>Cut the deployment pipeline to production from weeks to hours while driving cloud migration for applications between 10 and 20 years old. Architected the microservice approach and built the CI/CD pipelines behind the company's shift from VM-based infrastructure to cloud-first services on Azure.</p>
+        </li>
+        <li>
+          <h4>Technical leadership</h4>
+          <p>Active contributor to the enterprise cloud architecture committee, shaping company-wide strategy for microservice adoption and cloud-first practice. Regularly present technical designs and mentor junior engineers on distributed system patterns.</p>
+        </li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<section class="cols">
+  <h2 class="sec-head">Education</h2>
+  <div class="sec-body">
+    <div class="edu-item">
+      <h4>Gonzaga University</h4>
+      <p style="font-family:var(--mono);font-size:.78rem;margin-bottom:.6rem">Computer Science, Economics Concentration &nbsp;·&nbsp; May 2022</p>
+      <p>Senior design project: built an economic recovery dashboard for Greater Spokane Inc. on an Agile team, building a data fetching layer over the US Census API, Python analysis with Pandas, and a MongoDB store. Shaped stakeholder feedback into a working product and handed it off in May 2022.</p>
+    </div>
+    <div class="edu-item">
+      <h4>Division I Rowing &nbsp;<span style="font-family:var(--mono);font-weight:400;font-size:.78rem;color:var(--ink-soft)">Team Leader, 2018 to 2022</span></h4>
+      <p>Eight years of competitive rowing. Team leadership, and a working knowledge of sustained effort under load.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Lucas Abeln, Seattle</span>
+  <span><a href="mailto:lucasabeln@gmail.com">lucasabeln@gmail.com</a></span>
+</footer>
+
+</div>
+</body>
+</html>
