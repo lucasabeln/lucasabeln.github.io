@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lucas Abeln | Distributed Systems Engineer</title>
-<meta name="description" content="Distributed systems engineer in Seattle. Founding engineer on a global freight platform. Kafka, GraphQL, event-driven architecture.">
+<meta name="description" content="Distributed systems engineer in Seattle. Founding engineer on a global shipment model platform. Kafka, GraphQL, event-driven architecture.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..700&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400..700&display=swap" rel="stylesheet">
@@ -215,6 +215,17 @@ section{padding:clamp(2.25rem,5vw,3.5rem) 0;border-top:1px solid var(--rule)}
   font-size:1rem;margin:0 0 .3rem}
 .edu-item p{margin:0;color:var(--ink-soft)}
 
+/* ---- personal ---- */
+.personal-media{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:1.5rem;margin:0 0 2.25rem}
+.personal-media figure{margin:0}
+.personal-media img{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;
+  border:1px solid var(--rule);background:var(--paper-deep)}
+.personal-media figcaption{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-soft);margin-top:.6rem;line-height:1.4}
+.personal-note{margin:0;font-size:1.06em;line-height:1.56;max-width:var(--measure)}
+.personal-note em{font-style:normal;color:var(--hydro)}
+
 footer{padding:2.5rem 0 4rem;border-top:1px solid var(--rule);
   font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
   color:var(--ink-soft);display:flex;flex-wrap:wrap;gap:.6rem 2rem;justify-content:space-between}
@@ -222,7 +233,7 @@ footer{padding:2.5rem 0 4rem;border-top:1px solid var(--rule);
 /* ---- print ---- */
 @media print{
   :root{--paper:#fff;--paper-deep:#f2f2f2}
-  .graticule,.profile{display:none}
+  .graticule,.profile,.personal-media{display:none}
   body{font-size:10.5pt;line-height:1.42}
   .wrap{max-width:none;padding:0}
   header{padding:0}
@@ -261,7 +272,7 @@ footer{padding:2.5rem 0 4rem;border-top:1px solid var(--rule);
   <div class="intro">
   <p class="lede">I build distributed systems, and I explain them to <em>the people who pay for them.</em></p>
 
-  <p class="summary">Four years out of school: founding engineer on a platform now in global alpha for a Fortune 500 freight forwarder, service patterns I established adopted across the enterprise, and a seat on the cloud architecture committee. I specialize in Kafka and GraphQL microservices at global scale, and I spend as much time presenting that architecture to executives as I do designing it, turning complex systems into decisions people can actually make.</p>
+  <p class="summary">Four years out of school: I'm one of four founding engineers on a platform that's now in global alpha for a Fortune 500 freight forwarder, and the service patterns we set are used across the enterprise. I work in Kafka and GraphQL microservices at global scale, and I spend about as much time presenting that architecture to executives as I do designing it. The part I like most is taking something complicated and turning it into a decision someone can actually make.</p>
   </div>
 
   <p class="contact">
@@ -351,23 +362,23 @@ footer{padding:2.5rem 0 4rem;border-top:1px solid var(--rule);
     <ul class="trajectory">
       <li>
         <span class="mark">Month 0</span>
-        <p class="what"><strong>Joined Expeditors International</strong><span>Hired in February of my senior year, three months before graduating.</span></p>
+        <p class="what"><strong>Hired at Expeditors</strong><span>Three months before I graduated.</span></p>
       </li>
       <li>
         <span class="mark">Years 1 to 2</span>
-        <p class="what"><strong>Data governance and cloud migration</strong><span>Migrated legacy applications, some of them between 10 and 20 years old, off VM infrastructure and onto Azure. Architected the microservice approach and built the CI/CD pipelines that cut deployment to production from weeks to hours.</span></p>
+        <p class="what"><strong>Cloud migration and data governance</strong><span>Two years spent moving decades-old applications off VM infrastructure and onto Azure.</span></p>
       </li>
       <li>
         <span class="mark">Month 24</span>
-        <p class="what"><strong>Founding engineer, next-generation shipment platform</strong><span>One of four engineers selected to design the tenant-microservice architecture replacing shipment transaction processing for a Fortune 500 freight forwarder. Led the core shipment data model, and shipped the company's first production microservices using event-driven choreography. The service design and API contract patterns we set are now standard across the enterprise.</span></p>
+        <p class="what"><strong>Founding engineer, next-generation platform</strong><span>One of four, picked to rebuild shipment transaction processing from the ground up.</span></p>
       </li>
       <li>
         <span class="mark">Month 44</span>
-        <p class="what"><strong>Alpha goes live</strong><span>February 2026. Running across the global network, rollout ongoing.</span></p>
+        <p class="what"><strong>Alpha goes live</strong><span>February 2026. It's running across the global network right now.</span></p>
       </li>
       <li>
         <span class="mark">Today</span>
-        <p class="what"><strong>Presenting to the global network</strong><span>Regularly present architecture and product progress to executive and operational stakeholders, field technical questions from non-technical executives, and mentor engineers on distributed system patterns.</span></p>
+        <p class="what"><strong>Presenting to executives</strong><span>Architecture and product direction, in front of operators and executives across the network.</span></p>
       </li>
     </ul>
   </div>
@@ -407,23 +418,19 @@ footer{padding:2.5rem 0 4rem;border-top:1px solid var(--rule);
       <ul class="entries">
         <li>
           <h4>Next-generation shipment platform &nbsp;<span style="font-family:var(--mono);font-weight:400;font-size:.8em;color:var(--ink-soft)">2024 to present</span></h4>
-          <p>One of four founding engineers designing a tenant-microservice architecture to modernize shipment transaction processing for a Fortune 500 global freight forwarder. Led design of the core shipment data model and event-driven service choreography using Java Spring Boot, Kafka, GraphQL and Azure. Launched to global alpha in February 2026, with rollout ongoing.</p>
+          <p>I'm one of four founding engineers on a tenant-microservice architecture that's replacing shipment transaction processing for a Fortune 500 global freight forwarder. I co-designed the core shipment data model and the event-driven service choreography, built on Java Spring Boot, Kafka, Apollo GraphQL and Azure, with synchronous GraphQL reads over the top. These were the first production microservices the company had ever run, and the service design and API contract patterns we set are now standard across the enterprise.</p>
         </li>
         <li>
           <h4>Stakeholder presentations</h4>
-          <p>Present architectural decisions and product progress to executive and operational stakeholders across the global network. Field technical questions from non-technical executives and translate complex systems into actionable business context, folding what comes back into product direction.</p>
-        </li>
-        <li>
-          <h4>Microservice architecture</h4>
-          <p>One of four engineers on the first team to ship production microservices using event-driven choreography. Established patterns for service design, API contracts, and cloud-native deployment that became departmental standards and have since been adopted enterprise-wide.</p>
+          <p>I field technical questions from executives who aren't technical, and turn complicated systems into something they can make a decision on. What comes back out of those rooms shapes where the product goes next. The audience runs from operations teams using the platform every day to executives deciding what we build after this.</p>
         </li>
         <li>
           <h4>Legacy modernization</h4>
-          <p>Cut the deployment pipeline to production from weeks to hours while driving cloud migration for applications between 10 and 20 years old. Architected the microservice approach and built the CI/CD pipelines behind the company's shift from VM-based infrastructure to cloud-first services on Azure.</p>
+          <p>I've driven cloud migration for applications between 10 and 20 years old, and cut the deployment pipeline to production from weeks down to hours. I built the microservice approach and the CI/CD pipelines behind the company's move off VM-based infrastructure and onto cloud-first services in Azure.</p>
         </li>
         <li>
           <h4>Technical leadership</h4>
-          <p>Active contributor to the enterprise cloud architecture committee, shaping company-wide strategy for microservice adoption and cloud-first practice. Regularly present technical designs and mentor junior engineers on distributed system patterns.</p>
+          <p>I sit on the enterprise cloud architecture committee, where we shape company-wide strategy for microservice adoption and cloud-first practice. I also mentor junior engineers on distributed system patterns.</p>
         </li>
       </ul>
     </article>
@@ -436,12 +443,31 @@ footer{padding:2.5rem 0 4rem;border-top:1px solid var(--rule);
     <div class="edu-item">
       <h4>Gonzaga University</h4>
       <p style="font-family:var(--mono);font-size:.78rem;margin-bottom:.6rem">Computer Science, Economics Concentration &nbsp;·&nbsp; May 2022</p>
-      <p>Senior design project: built an economic recovery dashboard for Greater Spokane Inc. on an Agile team, building a data fetching layer over the US Census API, Python analysis with Pandas, and a MongoDB store. Shaped stakeholder feedback into a working product and handed it off in May 2022.</p>
+      <p>For my senior design project, my team built an economic recovery dashboard for Greater Spokane Inc., pulling from the US Census API with Python and Pandas doing the analysis and MongoDB underneath. We took their feedback, shaped it into something that actually worked, and handed it off in May 2022.</p>
     </div>
     <div class="edu-item">
       <h4>Division I Rowing &nbsp;<span style="font-family:var(--mono);font-weight:400;font-size:.78rem;color:var(--ink-soft)">Team Leader, 2018 to 2022</span></h4>
-      <p>Eight years of competitive rowing. Team leadership, and a working knowledge of sustained effort under load.</p>
+      <p>Eight years of competitive rowing, four of them leading the team. Rowing is where I learned to do hard things with other people, which turns out to be most of engineering too.</p>
     </div>
+  </div>
+</section>
+
+<section class="cols">
+  <h2 class="sec-head">Personal</h2>
+  <div class="sec-body">
+    <div class="personal-media">
+      <figure>
+        <img src="assets/backpacking.jpg" width="960" height="1280" loading="lazy"
+             alt="Lucas on a ridgeline carrying a backpacking pack, conifers and mountains behind him.">
+        <figcaption>Somewhere better than a beach</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/marathon.jpg" width="960" height="1280" loading="lazy"
+             alt="Lucas and four friends after the Vancouver Marathon, finisher medals around their necks.">
+        <figcaption>Vancouver Marathon, 2025</figcaption>
+      </figure>
+    </div>
+    <p class="personal-note">I am an avid backpacker and lover of the outdoors. I feel the most at home in the mountains, and on my week off you're much more likely to find me 43 miles into a national park than on a beach! In recent years I've taken up running as a hobby, with two marathons in the past two years and another planned for late 2026. I can't say I'd ever do them alone, but <em>doing hard things with my friends is my favorite pastime.</em></p>
   </div>
 </section>
 
